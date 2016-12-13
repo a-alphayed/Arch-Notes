@@ -13,6 +13,10 @@ Procedure
 
 ### 1. Make bootable USB media with Arch ISO image ([wiki](https://wiki.archlinux.org/index.php/USB_Flash_Installation_Media), [video guide](https://www.youtube.com/watch?v=EnepPp7Xl8Y))
 
+```bash
+dd if = archlinux-2015.01.01-dual.iso | pv | of = /dev/sd*
+```
+
 ### 2. Hold the <alt/option> key and boot into USB
 
 ### 3. Create partitions
