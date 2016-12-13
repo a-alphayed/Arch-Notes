@@ -5,8 +5,8 @@ Instructions for Arch installation notes + Arch on IMac installation.
 
 Credit for this information was taken from these sources:
 
--   [pandeiro/arch-on-air]
--   [ArchLinux Installation With OS X on Macbook Air (Dual Boot)]
+-   [pandeiro/arch-on-air](https://github.com/keinohguchi/arch-on-air/blob/master/README.md)
+-   [ArchLinux Installation With OS X on Macbook Air (Dual Boot)](http://panks.me/posts/2013/06/arch-linux-installation-with-os-x-on-macbook-air-dual-boot/)
 
 Procedure
 ---------
