@@ -77,14 +77,26 @@ Internet connection required, for wireless option use:
 
 ```bash
 wifi-menu
+```
+
+Test:
+
+```bash
+ping www.google.com
+```
+
+Run
+```bash
 pacstrap /mnt base base-devel
 genfstab -p /mnt >> /mnt/etc/fstab
 ```
+
 ### 6. Optimize fstab for SSD, add swap
 
 ```bash
 nano /mnt/etc/fstab\
 ```
+
 ```example
 /dev/sda6 / ext4 defaults,noatime,discard,data=writeback 0 1\
 /dev/sda5 /boot ext4 defaults,relatime,stripe=4 0 2\
@@ -128,6 +140,7 @@ nano /etc/mkinitcpio.conf
 ```
 
 Then run it:
+
 ```bash
 mkinitcpio -p linux
 ```
@@ -165,6 +178,7 @@ Run:
 grub-mkconfig -o boot/grub/grub.cfg
 grub-mkstandalone -o boot.efi -d usr/lib/grub/x86_64-efi -O x86_64-efi --compress=xz boot/grub/grub.cfg
 ```
+
 Copy boot.efi (generated in the command above) to a USB stick for use
 later in OS X:
 
@@ -172,6 +186,7 @@ later in OS X:
 mkdir /mnt/usbdisk && mount /dev/sdb /mnt/usbdisk 
 cp boot.efi /mnt/usbdisk/
 ```
+
 Arch doesn't have wireless included in the base packages. Install the following packages before rebooting for the WiFi to work on reboot:
 
 ```bash
@@ -224,8 +239,7 @@ nano SystemVersion.plist
 </plist>
 ```
 
-Copy boot.efi from your USB stick to this CoreServices directory. The\
-tree should look like this:
+Copy boot.efi from your USB stick to this CoreServices directory. The tree should look like this:
 
 ```example
 |___mach_kernel
