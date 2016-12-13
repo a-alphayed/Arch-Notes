@@ -94,13 +94,20 @@ genfstab -p /mnt >> /mnt/etc/fstab
 ### 6. Optimize fstab for SSD, add swap
 
 ```bash
-nano /mnt/etc/fstab\
+nano /mnt/etc/fstab
 ```
 
 ```example
-/dev/sda6 / ext4 defaults,noatime,discard,data=writeback 0 1\
-/dev/sda5 /boot ext4 defaults,relatime,stripe=4 0 2\
+/dev/sd*6 / ext4 defaults,noatime,discard,data=writeback 0 1
+/dev/sd*5 /boot ext4 defaults,relatime,stripe=4 0 2
 /swapfile none swap defaults 0 0
+```
+
+If your drive is HDD, you fstab file should look like this:
+
+```example
+/dev/sd*6 / ext4 defaults,noatime,discard,data=writeback 0 1
+/dev/sd*5 /boot ext4 defaults,relatime,stripe=4 0 2
 ```
 
 ### 7. Configure system
@@ -119,7 +126,7 @@ pacman -S sudo
 ### 8. Grant sudo
 
 ```bash
-echo “%wheel ALL=(ALL) ALL” &gt; /etc/sudoers.d/10-grant-wheel-group
+echo “%wheel ALL=(ALL) ALL” > /etc/sudoers.d/10-grant-wheel-group
 ```
 
 ### 9. Set up locale
