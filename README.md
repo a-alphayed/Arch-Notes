@@ -20,8 +20,10 @@ Procedure
 If the installation is on apple device the partition table should look
 like this:
 
-    fdisk -l
-    cgdisk /dev/sd*
+   ``` {.bash}
+   fdisk -l
+   cgdisk /dev/sd*
+   ```
 
 #### Partitions:
 
@@ -40,10 +42,12 @@ like this:
 
 Create a swapfile :
 
+    ``` {.bash}
     dd if=/dev/zero of=/mnt/swapfile bs=1G count=8
     chmod 600 /mnt/swapfile
     mkswap /mnt/swapfile
     swapon /mnt/swapfile
+    ```
 
 Use this method for creatind a swap partition instead of a swapfile:
 
@@ -53,17 +57,20 @@ Use this method for creatind a swap partition instead of a swapfile:
     ##### /dev/sd*6 - [X]             Linux Swap "Swap"
     ##### /dev/sd*7 - [Rest of space] Linux filesystem "Root"
 
-mkfs.ext4 /dev/sd*5\
-mkswap /dev/sd*6\
-mkfs.ext4 /dev/sd*7\
-mount /dev/sd*7 /mnt\
-mkdir /mnt/boot && mount /dev/sda5 /mnt/boot\
-swapon /dev/sd\*6
-
+``` {.bash}
+mkfs.ext4 /dev/sd*5
+mkswap /dev/sd*6
+mkfs.ext4 /dev/sd*7
+mount /dev/sd*7 /mnt
+mkdir /mnt/boot && mount /dev/sda5 /mnt/boot
+swapon /dev/sd*6
+```
     ### 5. Installation
     Internet connection required, for wireless option use:
 
+``` {.bash}
 wifi-menu
+```
 
 pacstrap /mnt base base-devel\
 genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
