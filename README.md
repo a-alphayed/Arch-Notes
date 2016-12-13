@@ -1,12 +1,12 @@
 Arch-Notes
 ==========
 
-Instructions for Arch installation notes + Arch on IMac installation.
+Instructions for Arch installation notes + Arch on IMac/MacBook installation.
 
 Credit for this information was taken from these sources:
 
--   [pandeiro/arch-on-air](https://github.com/keinohguchi/arch-on-air/blob/master/README.md)
--   [ArchLinux Installation With OS X on Macbook Air (Dual Boot)](http://panks.me/posts/2013/06/arch-linux-installation-with-os-x-on-macbook-air-dual-boot/)
+- [pandeiro/arch-on-air](https://github.com/keinohguchi/arch-on-air/blob/master/README.md)
+- [ArchLinux Installation With OS X on Macbook Air (Dual Boot)](http://panks.me/posts/2013/06/arch-linux-installation-with-os-x-on-macbook-air-dual-boot/)
 
 Procedure
 ---------
@@ -20,10 +20,10 @@ Procedure
 If the installation is on apple device the partition table should look
 like this:
 
-   ``` {.bash}
-   fdisk -l
-   cgdisk /dev/sd*
-   ```
+```bash
+fdisk -l
+cgdisk /dev/sd*
+```
 
 #### Partitions:
 
@@ -35,50 +35,51 @@ like this:
 
 ### 4. Format and mount partitions
 
-    mkfs.ext4 /dev/sd*5
-    mkfs.ext4 /dev/sd*6
-    mount /dev/sd*6 /mnt
-    mkdir /mnt/boot && mount /dev/sd*5 /mnt/boot
-
+```bash
+mkfs.ext4 /dev/sd*5
+mkfs.ext4 /dev/sd*6
+mount /dev/sd*6 /mnt
+mkdir /mnt/boot && mount /dev/sd*5 /mnt/boot
+```
 Create a swapfile :
 
-    ``` {.bash}
-    dd if=/dev/zero of=/mnt/swapfile bs=1G count=8
-    chmod 600 /mnt/swapfile
-    mkswap /mnt/swapfile
-    swapon /mnt/swapfile
-    ```
+```bash
+dd if=/dev/zero of=/mnt/swapfile bs=1G count=8
+chmod 600 /mnt/swapfile
+mkswap /mnt/swapfile
+swapon /mnt/swapfile
+```
 
 Use this method for creatind a swap partition instead of a swapfile:
 
-    #### Partitions:
-    ##### /dev/sd*4 - [128MB]         Apple HFS+ "Boot Loader"
-    ##### /dev/sd*5 - [256MB]         Linux filesystem "Boot"
-    ##### /dev/sd*6 - [X]             Linux Swap "Swap"
-    ##### /dev/sd*7 - [Rest of space] Linux filesystem "Root"
+#### Partitions:
+##### /dev/sd*4 - [128MB]         Apple HFS+ "Boot Loader"
+##### /dev/sd*5 - [256MB]         Linux filesystem "Boot"
+##### /dev/sd*6 - [X]             Linux Swap "Swap"
+##### /dev/sd*7 - [Rest of space] Linux filesystem "Root"
 
-      ``` {.bash}
-      mkfs.ext4 /dev/sd*5
-      mkswap /dev/sd*6
-      mkfs.ext4 /dev/sd*7
-      mount /dev/sd*7 /mnt
-      mkdir /mnt/boot && mount /dev/sda5 /mnt/boot
-      swapon /dev/sd*6
-      ```
-    ### 5. Installation
-    Internet connection required, for wireless option use:
+```bash
+mkfs.ext4 /dev/sd*5
+mkswap /dev/sd*6
+mkfs.ext4 /dev/sd*7
+mount /dev/sd*7 /mnt
+mkdir /mnt/boot && mount /dev/sda5 /mnt/boot
+swapon /dev/sd*6
+```
+### 5. Installation
+Internet connection required, for wireless option use:
 
-``` {.bash}
+```bash
 wifi-menu
 pacstrap /mnt base base-devel
 genfstab -p /mnt >> /mnt/etc/fstab
 ```
-    ### 6. Optimize fstab for SSD, add swap
+### 6. Optimize fstab for SSD, add swap
 
-``` {.bash}
+```bash
 nano /mnt/etc/fstab\
 ```
-``` {.example}
+```example
 /dev/sda6 / ext4 defaults,noatime,discard,data=writeback 0 1\
 /dev/sda5 /boot ext4 defaults,relatime,stripe=4 0 2\
 /swapfile none swap defaults 0 0
