@@ -35,10 +35,10 @@ like this:
 
 ### 4. Format and mount partitions
 
-    mkfs.ext4 /dev/sda5
-    mkfs.ext4 /dev/sda6
-    mount /dev/sda6 /mnt
-    mkdir /mnt/boot && mount /dev/sda5 /mnt/boot
+    mkfs.ext4 /dev/sd*5
+    mkfs.ext4 /dev/sd*6
+    mount /dev/sd*6 /mnt
+    mkdir /mnt/boot && mount /dev/sd*5 /mnt/boot
 
 Create a swapfile :
 
@@ -70,20 +70,23 @@ swapon /dev/sd*6
 
 ``` {.bash}
 wifi-menu
-```
-
 pacstrap /mnt base base-devel\
 genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
-
+```
     ### 6. Optimize fstab for SSD, add swap
 
+``` {.bash}
 nano /mnt/etc/fstab\
-``/dev/sda6 / ext4 defaults,noatime,discard,data=writeback 0 1\
+```
+``` {.example}
+/dev/sda6 / ext4 defaults,noatime,discard,data=writeback 0 1\
 /dev/sda5 /boot ext4 defaults,relatime,stripe=4 0 2\
 /swapfile none swap defaults 0 0
+```
 
     ### 7. Configure system
 
+``` {.bash}
 arch-chroot /mnt /bin/bash\
 passwd\
 echo myhostname &gt; /etc/hostname\
@@ -92,6 +95,7 @@ hwclock –systohc –utc\
 useradd -m -g users -G wheel -s /bin/bash myusername\
 passwd myusername\
 pacman -S sudo
+```
 
     ### 8. Grant sudo
 
