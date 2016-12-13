@@ -62,6 +62,8 @@ Use this method for creating a swap partition instead of a swapfile:
 ##### /dev/sd*7 - [Rest of space] Linux filesystem "Root"
 ```
 
+Run:
+
 ```bash
 mkfs.ext4 /dev/sd*5
 mkswap /dev/sd*6
