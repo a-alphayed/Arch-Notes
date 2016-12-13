@@ -110,8 +110,8 @@ nano /mnt/etc/fstab
 If your drive is HDD, you fstab file should look like this:
 
 ```example
-/dev/sd*6 / ext4 defaults,noatime,discard,data=writeback 0 1
-/dev/sd*5 /boot ext4 defaults,relatime,stripe=4 0 2
+/dev/sd*6 / ext4 rw,defaults,noatime,data=writeback 0 1
+/dev/sd*5 /boot ext4 rw,defaults,data=ordered 0 2
 ```
 
 ### 7. Configure system
