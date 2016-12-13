@@ -28,11 +28,11 @@ cgdisk /dev/sd*
 #### Partitions:
 
 ```example
-##### /dev/sd\*4 - \[128MB\] Apple HFS+ “Boot Loader”
+##### /dev/sd*4 - [128MB] Apple HFS+ “Boot Loader”
 
-##### /dev/sd\*5 - \[256MB\] Linux filesystem “Boot”
+##### /dev/sd*5 - [256MB] Linux filesystem “Boot”
 
-##### /dev/sd\*6 - \[Rest of space\] Linux filesystem “Root”
+##### /dev/sd*6 - [Rest of space] Linux filesystem “Root”
 ```
 
 ### 4. Format and mount partitions
