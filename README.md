@@ -11,7 +11,7 @@ Credit for this information was taken from these sources:
 Procedure
 ---------
 
-### 1. Make bootable USB media with Arch ISO image ([wiki])
+### 1. Make bootable USB media with Arch ISO image ([wiki](https://wiki.archlinux.org/index.php/USB_Flash_Installation_Media), [video guide](https://www.youtube.com/watch?v=EnepPp7Xl8Y))
 
 ### 2. Hold the <alt/option> key and boot into USB
 
