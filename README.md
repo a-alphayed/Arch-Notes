@@ -17,7 +17,7 @@ Procedure
 
 ### 3. Create partitions
 
-If the installation is on apple device the partition table should look
+If the installation is on Apple device the partition table should look
 like this:
 
 ```bash
@@ -50,7 +50,7 @@ mkswap /mnt/swapfile
 swapon /mnt/swapfile
 ```
 
-Use this method for creatind a swap partition instead of a swapfile:
+Use this method for creating a swap partition instead of a swapfile:
 
 #### Partitions:
 ##### /dev/sd*4 - [128MB]         Apple HFS+ "Boot Loader"
@@ -85,83 +85,97 @@ nano /mnt/etc/fstab\
 /swapfile none swap defaults 0 0
 ```
 
-    ### 7. Configure system
+### 7. Configure system
 
-``` {.bash}
-arch-chroot /mnt /bin/bash\
-passwd\
-echo myhostname &gt; /etc/hostname\
-ln -s /usr/share/zoneinfo/Canada/Eastern /etc/localtime\
-hwclock –systohc –utc\
-useradd -m -g users -G wheel -s /bin/bash myusername\
-passwd myusername\
+```bash
+arch-chroot /mnt /bin/bash
+passwd
+echo myhostname > /etc/hostname
+ln -s /usr/share/zoneinfo/Canada/Eastern /etc/localtime
+hwclock –systohc –utc
+useradd -m -g users -G wheel -s /bin/bash myusername
+passwd myusername
 pacman -S sudo
 ```
 
-    ### 8. Grant sudo
+### 8. Grant sudo
 
+```bash
 echo “%wheel ALL=(ALL) ALL” &gt; /etc/sudoers.d/10-grant-wheel-group
+```
 
-    ### 9. Set up locale
+### 9. Set up locale
 
+```bash
 nano /etc/locale.gen
+locale-gen
+echo LANG=en_US.UTF8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+```
 
-locale-gen\
-echo LANG=en\_US.UTF8 &gt; /etc/locale.conf\
-export LANG=en\_US.UTF-8
+### 10. Set up mkinitcpio hooks and run
 
-    ### 10. Set up mkinitcpio hooks and run
-    Insert "keyboard" after "autodetect" if it's not already there.
+Insert "keyboard" after "autodetect" if it's not already there.
 
+```bash
 nano /etc/mkinitcpio.conf
+```
 
 Then run it:
-
-    mkinitcpio -p linux
+```bash
+mkinitcpio -p linux
+```
 
 ### 11. Set up GRUB/EFI
 
-To boot up the computer we will continue to use Apple’s EFI\
-bootloader, so we need GRUB-EFI:
+To boot up the computer we will continue to use Apple’s EFI bootloader, so we need GRUB-EFI:
 
-    pacman -S grub-efi-x86_64
+```bash
+pacman -S grub-efi-x86_64
+```
 
 #### Configuring GRUB
 
-    nano /etc/default/grub
+```bash
+nano /etc/default/grub
+```
 
-Aside from setting the quiet and rootflags kernel parameters,\
-a special parameter must be set to avoid system (CPU/IO)\
-hangs related to ATA, as per
-\[\[<https://bbs.archlinux.org/viewtopic.php?pid%3D1295212#p1295212>\]\[this
-thread\]\]:
+A special kernal parameter must be set to avoid system (CPU/IO)
+hangs:
 
-    GRUB_CMDLINE_LINUX_DEFAULT="quiet rootflags=data=writeback libata.force=1:noncq"
-
+```example
+GRUB_CMDLINE_LINUX_DEFAULT="quiet rootflags=data=writeback libata.force=1:noncq"
+```
 Additionally, the grub template is broken and requires this adjustment:
 
-    # Fix broken grub.cfg gen
-    GRUB_DISABLE_SUBMENU=y
+```example
+#Fix broken grub.cfg gen
+GRUB_DISABLE_SUBMENU=y
+```
 
-    grub-mkconfig -o boot/grub/grub.cfg
-    grub-mkstandalone -o boot.efi -d usr/lib/grub/x86_64-efi -O x86_64-efi --compress=xz boot/grub/grub.cfg
+Run:
 
+```bash
+grub-mkconfig -o boot/grub/grub.cfg
+grub-mkstandalone -o boot.efi -d usr/lib/grub/x86_64-efi -O x86_64-efi --compress=xz boot/grub/grub.cfg
+```
 Copy boot.efi (generated in the command above) to a USB stick for use
 later in OS X:
 
-``` {.{.bash}}
+```bash
 mkdir /mnt/usbdisk && mount /dev/sdb /mnt/usbdisk 
 cp boot.efi /mnt/usbdisk/
-#+end_example
-Arch doesn't have wireless included in the base package. Install the following packages before rebooting for the WiFi to work on reboot:
-#+begin_src sh
-pacman -S iw wireless_tools wpa_supplicant dialog
-#+end_example
+```
+Arch doesn't have wireless included in the base packages. Install the following packages before rebooting for the WiFi to work on reboot:
 
-*** 12. Setup boot in OS X
+```bash
+pacman -S iw wireless_tools wpa_supplicant dialog
+```
+
+### 12. Setup boot in OS X
 Before reboot, exit from the *chroot* and unmount all the partition:
 
-#+begin_src sh
+```bash
 exit
 umount /mnt/{boot,root}
 reboot
@@ -169,14 +183,13 @@ reboot
 
 ### 13. Launch Disk Utility in OS X
 
-Format (“Erase”) /dev/sda4 using Mac journaled filesystem
+Format (“Erase”) /dev/sda4 using Mac journaled filesystem.
 
 ### 14. Create boot file structure
 
-This procedure allows the Apple bootloader to see our Arch Linux system\
-and present it as the default boot option.
+This procedure allows the Apple bootloader to see our Arch Linux system and present it as the default boot option.
 
-``` {.{.bash}}
+```bash
 cd /Volumes/disk0s4
 mkdir System mach_kernel
 cd System
@@ -187,11 +200,11 @@ cd CoreServices
 touch SystemVersion.plist
 ```
 
-``` {.{.bash}}
+```bash
 nano SystemVersion.plist
 ```
 
-``` {.{.example}}
+```example
 <xml version="1.0" encoding="utf-8"?>
 <plist version="1.0">
 <dict>
@@ -208,7 +221,7 @@ nano SystemVersion.plist
 Copy boot.efi from your USB stick to this CoreServices directory. The\
 tree should look like this:
 
-``` {.example}
+```example
 |___mach_kernel
 |___System
        |
@@ -222,21 +235,17 @@ tree should look like this:
 
 ### 15. Make Boot Loader partition bootable
 
-``` {.bash}
+```bash
 sudo bless --device /dev/disk0s4 --setBoot
 ```
 
 You may need to disable the System Integrity Projection of OS X:
 
 -   Restart the computer, while booting hold down Command-R to boot
-    into\
-    recovery mode.
--   Once booted, navigate to the “Utilities &gt; Terminal” in the top\
-    menu bar.
--   Enter “csrutil disable” in the terminal window and hit the return\
-    key.
--   Restart the machine and System Integrity Protection will now be\
-    disabled.
+    into recovery mode.
+-   Once booted, navigate to the “Utilities > Terminal” in the top menu bar.
+-   Enter “csrutil disable” in the terminal window and hit the returnkey.
+-   Restart the machine and System Integrity Protection will now be disabled.
 
 End of Arch Linux is installation.
 
