@@ -57,21 +57,21 @@ Use this method for creatind a swap partition instead of a swapfile:
     ##### /dev/sd*6 - [X]             Linux Swap "Swap"
     ##### /dev/sd*7 - [Rest of space] Linux filesystem "Root"
 
-``` {.bash}
-mkfs.ext4 /dev/sd*5
-mkswap /dev/sd*6
-mkfs.ext4 /dev/sd*7
-mount /dev/sd*7 /mnt
-mkdir /mnt/boot && mount /dev/sda5 /mnt/boot
-swapon /dev/sd*6
-```
+      ``` {.bash}
+      mkfs.ext4 /dev/sd*5
+      mkswap /dev/sd*6
+      mkfs.ext4 /dev/sd*7
+      mount /dev/sd*7 /mnt
+      mkdir /mnt/boot && mount /dev/sda5 /mnt/boot
+      swapon /dev/sd*6
+      ```
     ### 5. Installation
     Internet connection required, for wireless option use:
 
 ``` {.bash}
 wifi-menu
-pacstrap /mnt base base-devel\
-genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
+pacstrap /mnt base base-devel
+genfstab -p /mnt >> /mnt/etc/fstab
 ```
     ### 6. Optimize fstab for SSD, add swap
 
