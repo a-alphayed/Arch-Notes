@@ -27,11 +27,13 @@ cgdisk /dev/sd*
 
 #### Partitions:
 
+```example
 ##### /dev/sd\*4 - \[128MB\] Apple HFS+ “Boot Loader”
 
 ##### /dev/sd\*5 - \[256MB\] Linux filesystem “Boot”
 
 ##### /dev/sd\*6 - \[Rest of space\] Linux filesystem “Root”
+```
 
 ### 4. Format and mount partitions
 
@@ -53,10 +55,12 @@ swapon /mnt/swapfile
 Use this method for creating a swap partition instead of a swapfile:
 
 #### Partitions:
+```example
 ##### /dev/sd*4 - [128MB]         Apple HFS+ "Boot Loader"
 ##### /dev/sd*5 - [256MB]         Linux filesystem "Boot"
 ##### /dev/sd*6 - [X]             Linux Swap "Swap"
 ##### /dev/sd*7 - [Rest of space] Linux filesystem "Root"
+```
 
 ```bash
 mkfs.ext4 /dev/sd*5
