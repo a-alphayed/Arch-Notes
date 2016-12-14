@@ -10,7 +10,6 @@ The information in this documentation was taken from these sources:
 
 - - - -
 
-- [Partitioning](#Create-partitions)
 - [Partitioning](#3.-Create-partitions)
 
 Procedure
@@ -24,7 +23,7 @@ dd if = archlinux-2015.01.01-dual.iso | pv | of = /dev/sd*
 
 ### 2. Hold the <alt/option> key and boot into USB
 
-### Create partitions
+### 3. Create partitions
 
 If the installation is on Apple device the partition table should look
 like this:
