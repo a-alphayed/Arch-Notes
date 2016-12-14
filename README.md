@@ -301,7 +301,7 @@ Post Installation
 #### GUI
  1. [Installation](#1-installation)
  2. [Starting Session](#2-starting session)
-  2. [Configuration](#i-xinitrc)
+  2. [.xinitrc](#i-xinitrc)
 
           
 #### 1. Installation:
