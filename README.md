@@ -10,7 +10,7 @@ The information in this documentation was taken from these sources:
 
 - - - -
 
-- [Partitioning](#create-partitions)
+- [Partitioning](#3.-create-partitions)
 
 Procedure
 ---------
