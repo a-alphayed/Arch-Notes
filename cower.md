@@ -20,3 +20,12 @@ cd cower
 
 ```bash
 makepkg -s
+```
+
+### 5. Install Cower to your sytem:
+
+```bash
+makepkg -i
+```
+
+Instructional video can be found [here](https://www.youtube.com/watch?v=JKPBfyJUeMg)
