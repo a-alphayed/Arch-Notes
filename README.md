@@ -10,7 +10,7 @@ The information in this documentation was taken from these sources:
 
 - - - -
 
-- [Partitioning](#3. Create partitions)
+- [Partitioning](#3.-Create-partitions)
 - [Pre-installation](#pre-installation)
 - [Installation](#installation)
 - [Post-installation](#post-installation)
