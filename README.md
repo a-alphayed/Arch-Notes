@@ -300,8 +300,8 @@ Post Installation
 
 #### GUI
  1. [Installation](#1.1-installation)
-  2. [Starting Session](#1.2-starting session)
-   2. [Configuration](#1.2.1-configuration)
+ 2. [Starting Session](#1.2-starting session)
+  2. [Configuration](#1.2.1-configuration)
           
 #### 1. Installation:
 
