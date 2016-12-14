@@ -299,9 +299,9 @@ Post Installation
 [GUI](#gui)
 
 #### GUI
- 1. [Installation](#1.1-installation)
- 2. [Starting Session](#1.2-starting session)
-  2. [Configuration](#1.2.1-configuration)
+ 1. [Installation](#1-installation)
+ 2. [Starting Session](#2-starting session)
+  2. [Configuration](#i-configuration)
           
 #### 1. Installation:
 
@@ -316,7 +316,7 @@ I will be using [xinit](https://wiki.archlinux.org/index.php/Xinit) to start the
 sudo pacman -S xorg-xinit
 ```
 
-##### ii. Configuration
+##### i. Configuration
 Run:
 
 ```bash
