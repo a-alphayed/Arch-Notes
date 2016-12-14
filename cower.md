@@ -10,5 +10,13 @@ Instructions on installing cower on arch.
 tar xzvf cower.tar.gz 
 ```
 
-### 3. cd into the directoy asdf 
-d
+### 3. cd into the directory:
+
+```bash
+cd cower
+```
+
+### 4. Use the _makepkg_ with sync flag _-s_:
+
+```bash
+makepkg -s
