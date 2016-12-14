@@ -15,7 +15,7 @@ The information in this documentation was taken from these sources:
 - [Partitioning](#3-create-partitions)
 - [Installation](#5-installation)
 - [Configuration](#7-configure-system)
-- [Network](#arch-doesn't-have-wireless-included-in-the-base-packages-install-the-following-packages-before-rebooting-for-the-wiFi-to-work-on-reboot)
+- [Network](#network)
 - [Post Installation](#post-installation)
 
 Procedure
@@ -208,6 +208,7 @@ mkdir /mnt/usbdisk && mount /dev/sdb /mnt/usbdisk
 cp boot.efi /mnt/usbdisk/
 ```
 
+#### Network
 Arch doesn't have wireless included in the base packages. Install the following packages before rebooting for the WiFi to work on reboot:
 
 ```bash
