@@ -27,7 +27,7 @@ Procedure
 dd if = archlinux-2015.01.01-dual.iso | pv | of = /dev/sd*
 ```
 
-### 2. Hold the <alt/option> key and boot into USB
+### 2. Hold the _alt/option_ key and boot into USB
 
 ### 3. Create partitions
 
@@ -66,9 +66,8 @@ mkswap /mnt/swapfile
 swapon /mnt/swapfile
 ```
 
-Use this method for creating a swap partition instead of a swapfile:
+####Use this method for creating a swap partition instead of a swapfile:
 
-#### Partitions:
 ```example
 ##### /dev/sd*4 - [128MB]         Apple HFS+ "Boot Loader"
 ##### /dev/sd*5 - [256MB]         Linux filesystem "Boot"
@@ -295,3 +294,19 @@ Reboot the computer and hold the alt/option key to select operating system.
 
 Post Installation
 -----------------
+
+### 1. GUI
+1. [1.1 Installation](1.1-installation)
+2. [Starting Session]
+           2. Which is numbered
+          2. Which is numbered
+
+#### 1.1 Installation:
+
+```bash
+sudo pacman -S gnome
+```
+
+I will be using [xinit](https://wiki.archlinux.org/index.php/Xinit) to start the desktop enviroment, g
+
+
