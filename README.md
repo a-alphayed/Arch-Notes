@@ -7,11 +7,14 @@ The information in this documentation was taken from these sources:
 
 - [pandeiro/arch-on-air](https://github.com/keinohguchi/arch-on-air/blob/master/README.md)
 - [ArchLinux Installation With OS X on Macbook Air (Dual Boot)](http://panks.me/posts/2013/06/arch-linux-installation-with-os-x-on-macbook-air-dual-boot/)
+- [Arch Installation guide](https://wiki.archlinux.org/index.php/installation_guide)
+- [ArchLinux on MacBook(Air)](https://wiki.archlinux.org/index.php/MacBook)
 
 - - - -
 
 - [Partitioning](#3-create-partitions)
 - [Installation](#5-installation)
+- [Configuration](7-configure-system)
 
 Procedure
 ---------
@@ -286,3 +289,6 @@ You may need to disable the System Integrity Projection of OS X:
 End of Arch Linux is installation.
 
 Reboot the computer and hold the alt/option key to select operating system.
+
+Post Installation
+-----------------
