@@ -300,24 +300,24 @@ Post Installation
 
 #### GUI
  1. [Installation](#1.1-installation)
-  1. [Starting Session](#1.2-starting session)
-   1. [Configuration](#1.2.1-configuration)
+  2. [Starting Session](#1.2-starting session)
+   2. [Configuration](#1.2.1-configuration)
           
-#### 1.1 Installation:
+#### 1. Installation:
 
 ```bash
 sudo pacman -S gnome
 ```
 
-#### 1.2 Starting Session
+#### 2. Starting Session
 I will be using [xinit](https://wiki.archlinux.org/index.php/Xinit) to start the desktop enviroment, a display manager line [GDM](https://wiki.archlinux.org/index.php/GDM#Autostarting_applications_with_GDM) can be used and enable with [systemd](https://wiki.archlinux.org/index.php/Systemd#Using_units).
 
 ```bash
 sudo pacman -S xorg-xinit
 ```
 
-##### 1.2.1 Configuration
-Run"
+##### ii. Configuration
+Run:
 
 ```bash
 nano 
