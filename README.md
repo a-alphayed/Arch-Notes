@@ -11,7 +11,7 @@ The information in this documentation was taken from these sources:
 - - - -
 
 - [Partitioning](#3.-create-partitions)
-- [Installation](#5.-installation)
+- [Installation](#5-installation)
 
 Procedure
 ---------
