@@ -14,7 +14,8 @@ The information in this documentation was taken from these sources:
 
 - [Partitioning](#3-create-partitions)
 - [Installation](#5-installation)
-- [Configuration](7-configure-system)
+- [Configuration](#7-configure-system)
+- [Post Installation](#post-installation)
 
 Procedure
 ---------
