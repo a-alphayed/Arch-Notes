@@ -296,17 +296,30 @@ Post Installation
 -----------------
 
 ### 1. GUI
-1. [1.1 Installation](1.1-installation)
-2. [Starting Session]
-           2. Which is numbered
-          2. Which is numbered
-
+[1.1 Installation](#1.1-installation)
+[1.2 Starting Session](#1.2-starting session)
+ [1.2.1 Configuration](#
+          
 #### 1.1 Installation:
 
 ```bash
 sudo pacman -S gnome
 ```
 
-I will be using [xinit](https://wiki.archlinux.org/index.php/Xinit) to start the desktop enviroment, g
+#### 1.2 Starting Session
+I will be using [xinit](https://wiki.archlinux.org/index.php/Xinit) to start the desktop enviroment, a display manager line [GDM](https://wiki.archlinux.org/index.php/GDM#Autostarting_applications_with_GDM) can be used and enable with [systemd](https://wiki.archlinux.org/index.php/Systemd#Using_units).
+
+```bash
+sudo pacman -S xorg-xinit
+```
+
+##### 1.2.1 Configuration
+Run"
+
+```bash
+nano 
+```
+
+
 
 
