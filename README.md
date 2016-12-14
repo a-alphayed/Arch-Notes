@@ -208,14 +208,14 @@ mkdir /mnt/usbdisk && mount /dev/sdb /mnt/usbdisk
 cp boot.efi /mnt/usbdisk/
 ```
 
-#### Network
+### 12. Network
 Arch doesn't have wireless included in the base packages. Install the following packages before rebooting for the WiFi to work on reboot:
 
 ```bash
 pacman -S iw wireless_tools wpa_supplicant dialog
 ```
 
-### 12. Setup boot in OS X
+### 13. Setup boot in OS X
 Before reboot, exit from the *chroot* and unmount all the partition:
 
 ```bash
@@ -224,11 +224,11 @@ umount /mnt/{boot,root}
 reboot
 ```
 
-### 13. Launch Disk Utility in OS X
+### 14. Launch Disk Utility in OS X
 
 Format (“Erase”) /dev/sda4 using Mac journaled filesystem.
 
-### 14. Create boot file structure
+### 15. Create boot file structure
 
 This procedure allows the Apple bootloader to see our Arch Linux system and present it as the default boot option.
 
@@ -275,7 +275,7 @@ Copy boot.efi from your USB stick to this CoreServices directory. The tree shoul
                       |___boot.efi
 ```
 
-### 15. Make Boot Loader partition bootable
+### 16. Make Boot Loader partition bootable
 
 ```bash
 sudo bless --device /dev/disk0s4 --setBoot
