@@ -15,7 +15,7 @@ The information in this documentation was taken from these sources:
 - [Partitioning](#3-create-partitions)
 - [Installation](#5-installation)
 - [Configuration](#7-configure-system)
-- [Network](#network)
+- [Network](#12-network)
 - [Post Installation](#post-installation)
 
 Procedure
