@@ -301,7 +301,8 @@ Post Installation
 #### GUI
  1. [Installation](#1-installation)
  2. [Starting Session](#2-starting session)
-  2. [Configuration](#i-configuration)
+  2. [Configuration](#i-xinitrc)
+
           
 #### 1. Installation:
 
@@ -316,12 +317,69 @@ I will be using [xinit](https://wiki.archlinux.org/index.php/Xinit) to start the
 sudo pacman -S xorg-xinit
 ```
 
-##### i. Configuration
-Run:
+##### i. .xinitrc
+The _.xinitrc_ file should look line this, __first__ run:
 
 ```bash
-nano 
+cp /etc/X11/xinit/xinitrc ~/.xinitrc
+sudo nano .xinitrc
 ```
+__then__
+
+```example
+# merge in defaults and keymaps
+
+if [ -f $sysresources ]; then
+
+
+
+
+
+
+
+    xrdb -merge $sysresources
+
+fi
+
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
+fi
+
+if [ -f "$userresources" ]; then
+
+
+
+
+
+
+
+    xrdb -merge "$userresources"
+
+fi
+
+if [ -f "$usermodmap" ]; then
+    xmodmap "$usermodmap"
+fi
+
+# start some nice programs
+
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+ for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+  [ -x "$f" ] && . "$f"
+ done
+ unset f
+fi
+
+# twm &
+#xclock -geometry 50x50-1+1 &
+#xterm -geometry 80x50+494+51 &
+#xterm -geometry 80x20+494-0 &
+#exec xterm -geometry 80x66+0+0 -name login
+exec gnome-session
+```
+
+
+
 
 
 
