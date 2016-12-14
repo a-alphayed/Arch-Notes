@@ -15,7 +15,7 @@ The information in this documentation was taken from these sources:
 - [Partitioning](#3-create-partitions)
 - [Installation](#5-installation)
 - [Configuration](#7-configure-system)
-- [Network](#arch-doesn't-have-wireless-included-in-the-base-packages-install-the-following-packages-before-rebooting-for-the-wiFi-to-work-on-reboot:)
+- [Network](#arch-doesn't-have-wireless-included-in-the-base-packages-install-the-following-packages-before-rebooting-for-the-wiFi-to-work-on-reboot)
 - [Post Installation](#post-installation)
 
 Procedure
