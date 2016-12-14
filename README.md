@@ -295,10 +295,10 @@ Reboot the computer and hold the alt/option key to select operating system.
 Post Installation
 -----------------
 
-### 1. GUI
-     1. [Installation](#1.1-installation)
-      1. [Starting Session](#1.2-starting session)
-       1. [Configuration](#1.2.1-configuration)
+#### 1. GUI
+ 1. [Installation](#1.1-installation)
+  1. [Starting Session](#1.2-starting session)
+   1. [Configuration](#1.2.1-configuration)
           
 #### 1.1 Installation:
 
