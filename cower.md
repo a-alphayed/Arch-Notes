@@ -49,7 +49,7 @@ Use the __cower__ command with the __-u__ flag for finding packages that needs u
 cower -ud
 ```
 
-#### 7.1 Installing updates
+#### 7.1 Installing updates:
 The following pattern is useful for finding the exeuting the __makepkg__ command on all the PKBUILD so that we don't have to do it for each package
 
 ```bash
