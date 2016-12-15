@@ -31,15 +31,15 @@ dd if = archlinux-2015.01.01-dual.iso | pv | of = /dev/sd*
 
 ### 3. Create partitions
 
-If the installation is on Apple device the partition table should look
-like this:
-
 ```bash
 fdisk -l
 cgdisk /dev/sd*
 ```
 
 #### Partitions:
+
+If the installation is on Apple device the partition table should look
+like this:
 
 ```example
 ##### /dev/sd*4 - [128MB] Apple HFS+ “Boot Loader”
@@ -66,7 +66,7 @@ mkswap /mnt/swapfile
 swapon /mnt/swapfile
 ```
 
-####Use this method for creating a swap partition instead of a swapfile:
+#### 4.1 Use this method for creating a swap partition instead of a swapfile:
 
 ```example
 ##### /dev/sd*4 - [128MB]         Apple HFS+ "Boot Loader"
@@ -85,6 +85,27 @@ mount /dev/sd*7 /mnt
 mkdir /mnt/boot && mount /dev/sda5 /mnt/boot
 swapon /dev/sd*6
 ```
+
+#### 4.2 If your installing on a PC:
+
+
+First Header  | Second Header | First Header | Second Header | Second Header |
+------------- | ------------- | ------------ | ------------- | ------------- |
+Content Cell  | Content Cell  | Content Cell | Content Cell  | Content Cell  | 
+Content Cell  | Content Cell  | Content Cell | Content Cell  | Content Cell  |
+
+
+Run:
+
+```bash
+mkfs.ext4 /dev/sd*5
+mkswap /dev/sd*6
+mkfs.ext4 /dev/sd*7
+mount /dev/sd*7 /mnt
+mkdir /mnt/boot && mount /dev/sda5 /mnt/boot
+swapon /dev/sd*6
+```
+
 ### 5. Installation
 Internet connection required, for wireless option use:
 
@@ -104,7 +125,7 @@ pacstrap /mnt base base-devel
 genfstab -p /mnt >> /mnt/etc/fstab
 ```
 
-### 6. Optimize fstab for SSD, add swap
+### 6. Optimize fstab for SSD, add swap (Apple only)
 
 ```bash
 nano /mnt/etc/fstab
@@ -116,7 +137,7 @@ nano /mnt/etc/fstab
 /swapfile  none    swap  defaults 0 0
 ```
 
-If your drive is HDD, you fstab file should look like this:
+If your drive is HDD, you fstab file should look like this (Apple only):
 
 ```example
 /dev/sd*6  /      ext4  rw,defaults,noatime,data=writeback 0 1
@@ -165,7 +186,7 @@ Then run it:
 mkinitcpio -p linux
 ```
 
-### 11. Set up GRUB/EFI
+### 11. Set up GRUB/EFI (Apple only)
 
 To boot up the computer we will continue to use Apple’s EFI bootloader, so we need GRUB-EFI:
 
