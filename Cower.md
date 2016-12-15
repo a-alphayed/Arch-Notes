@@ -1,7 +1,7 @@
 Cower
 =====
 
-Instructions on installing cower on arch.
+Instructions on installing and using Cower to maintain Arch AUR packages. 
 
 ### 1. Downdoad the tarball
 ### 2. Untar the package:
