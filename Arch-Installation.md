@@ -382,6 +382,7 @@ Post Installation
  1. [Installation](#1-installation)
  2. [Starting Session](#2-starting session)
   2. [.xinitrc](#i-xinitrc)
+ 3. [Graphical terminal](#3-graphical terminal)
 
           
 #### 1. Installation:
@@ -457,6 +458,36 @@ fi
 #exec xterm -geometry 80x66+0+0 -name login
 exec gnome-session
 ```
+Start session with:
+
+```bash
+starx
+```
+
+#### 3. Graphical Terminal
+
+Install Guake:
+
+```bash
+sudo pacman -S guake
+```
+
+Install Zsh completions:
+
+```bash 
+sudo pacman -S zsh-completions
+```
+
+Clone [.dotfiles](https://github.com/alphayed/.dotfiles) repo and install script:
+
+```bash
+git clone git@github.com:alphayed/.dotfiles.git
+cd ~/.dotfiles
+chmod +x ,makesymlinks.sh
+./.makesymlinks.sh
+```
+
+
 
 
 
