@@ -1,7 +1,7 @@
 Arch-Notes
 ==========
 
-Instructions for Arch installation notes + Arch on IMac/MacBook installation.
+Instructions for Arch installation notes + Arch on IMac/Book installation.
 
 __References:__
 
@@ -15,8 +15,8 @@ __References:__
 - [Partitioning](#3-create-partitions)
 - [Installation](#5-installation)
 - [Configuration](#7-configure-system)
-- [GRUB/EFI](#11-setup-grub-efi)
-- [GRUB/BIOS](#11.1-setup-grub-bios)
+- [GRUB/EFI](#11-setup-grub/efi)
+- [GRUB/BIOS](#11.1-setup-grub/bios)
 - [Network](#12-network)
 - [Post Installation](#post-installation)
 
@@ -46,8 +46,14 @@ like this:
 Mount point   | Partition     | Name         | Partition type      | Suggested size
 ------------- | ------------- | ------------ | ------------------- | ------------- 
 NONE          | /dev/sdX4     | Boot Loader  | Apple HFS+          | 128M  
-/mnt/boot     | /dev/sdX5     | Boot         | Linux filesystem    | 256MB  
-/mnt          | /dev/sdX6     | Root         | Linux filesystem    | [Rest of space] 
+/             | /dev/sdX5     | Boot         | Linux filesystem    | 256MB  
+/             | /dev/sdX6     | Root         | Linux filesystem    | [Rest of space] 
+
+Check if the partition scheme of the disk is right:
+
+```bash
+lsblk
+```
 
 ### 4. Format and mount partitions
 
@@ -71,9 +77,15 @@ swapon /mnt/swapfile
 Mount point   | Partition     | Name         | Partition type      | Suggested size
 ------------- | ------------- | ------------ | ------------------- | ------------- 
 NONE          | /dev/sdX4     | Boot Loader  | Apple HFS+          | 128M  
-/mnt/boot     | /dev/sdX5     | Boot         | Linux filesystem    | 256MB  
+/             | /dev/sdX5     | Boot         | Linux filesystem    | 256MB  
 NONE          | /dev/sdX6     | Swap         | Linux Swap          | [X] 
-/mnt          | /dev/sdX7     | Root         | Linux filesystem    | [Rest of space] 
+/             | /dev/sdX7     | Root         | Linux filesystem    | [Rest of space] 
+
+Check if the partition scheme of the disk is right:
+
+```bash
+lsblk
+```
 
 Create Filesystem:
 
@@ -92,7 +104,13 @@ swapon /dev/sdX6
 Mount point   | Partition     | Name         | Partition type      | Suggested size
 ------------- | ------------- | ------------ | ------------------- | ------------- 
 NONE          | /dev/sdX1     | Boot         | BIOS boot partition | 2M   
-/mnt          | /dev/sdX2     | Root         | Linux filesystem    | Content Cell  
+/             | /dev/sdX2     | Root         | Linux filesystem    | [Rest of space]   
+
+Check if the partition scheme of the disk is right:
+
+```bash
+lsblk
+```
 
 
 Create Filesystem:
@@ -110,7 +128,7 @@ mkswap /mnt/swapfile
 swapon /mnt/swapfile
 ```
 
-### 5. Installation
+### 5. Install the base system
 Internet connection required, for wireless option use:
 
 ```bash
@@ -197,7 +215,7 @@ Then run it:
 mkinitcpio -p linux
 ```
 
-### 11. Setup GRUB/EFI 
+### 11. Setup GRUB/EFI  
 
 To boot up the computer we will continue to use Apple’s EFI bootloader, so we need GRUB-EFI:
 
