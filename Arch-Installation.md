@@ -398,7 +398,7 @@ sudo pacman -S xorg-xinit
 ```
 
 ##### i. .xinitrc
-The _.xinitrc_ file should look line this, __first__ run:
+The _.xinitrc_ file should look like this, __first__ run:
 
 ```bash
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
