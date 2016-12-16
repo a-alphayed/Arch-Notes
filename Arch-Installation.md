@@ -382,7 +382,7 @@ Post Installation
  1. [Installation](#1-installation)
  2. [Starting Session](#2-starting session)
   2. [.xinitrc](#i-xinitrc)
- 3. [Graphical terminal](#3-graphical terminal)
+ 3. [Graphical terminal](#3-graphical-terminal)
 
           
 #### 1. Installation:
@@ -472,13 +472,13 @@ Install Guake:
 sudo pacman -S guake
 ```
 
-Install Zsh completions:
+#### 3.1 Install Zsh completions:
 
 ```bash 
 sudo pacman -S zsh-completions
 ```
 
-Clone [.dotfiles](https://github.com/alphayed/.dotfiles) repo and install script:
+#### 3.2 Clone [.dotfiles](https://github.com/alphayed/.dotfiles) repo and install script:
 
 ```bash
 git clone git@github.com:alphayed/.dotfiles.git
