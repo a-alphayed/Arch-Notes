@@ -472,13 +472,17 @@ Install Guake:
 sudo pacman -S guake
 ```
 
-#### 3.1 Install Zsh completions:
+##### 3.1 Install Zsh completions:
 
 ```bash 
 sudo pacman -S zsh-completions
 ```
 
-#### 3.2 Clone [.dotfiles](https://github.com/alphayed/.dotfiles) repo and install script:
+##### 3.2 Install [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
+
+Install [halfo/lambda-mod-zsh-theme](https://github.com/halfo/lambda-mod-zsh-theme)
+
+##### 3.3 Clone [.dotfiles](https://github.com/alphayed/.dotfiles) repo and install script:
 
 ```bash
 git clone git@github.com:alphayed/.dotfiles.git
