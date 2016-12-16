@@ -16,7 +16,7 @@ __References:__
 - [Installation](#5-installation)
 - [Configuration](#7-configure-system)
 - [GRUB/EFI](#11-setup-grub/efi)
-- [GRUB/BIOS](#11.1-setup-grub/bios)
+- [GRUB/BIOS](#11.1-setup-GRUB/BIOS)
 - [Network](#12-network)
 - [Post Installation](#post-installation)
 
@@ -52,10 +52,10 @@ NONE          | /dev/sdX4     | Boot Loader  | Apple HFS+          | 128M
 ### 4. Format and mount partitions
 
 ```bash
-mkfs.ext4 /dev/sd*5
-mkfs.ext4 /dev/sd*6
-mount /dev/sd*6 /mnt
-mkdir /mnt/boot && mount /dev/sd*5 /mnt/boot
+mkfs.ext4 /dev/sdX5
+mkfs.ext4 /dev/sdX6
+mount /dev/sdX6 /mnt
+mkdir /mnt/boot && mount /dev/sdX5 /mnt/boot
 ```
 Create a swapfile :
 
@@ -73,17 +73,17 @@ Mount point   | Partition     | Name         | Partition type      | Suggested s
 NONE          | /dev/sdX4     | Boot Loader  | Apple HFS+          | 128M  
 /mnt/boot     | /dev/sdX5     | Boot         | Linux filesystem    | 256MB  
 NONE          | /dev/sdX6     | Swap         | Linux Swap          | [X] 
-/             | /dev/sdX7     | Root         | Linux filesystem    | [Rest of space] 
+/mnt          | /dev/sdX7     | Root         | Linux filesystem    | [Rest of space] 
 
 Create Filesystem:
 
 ```bash
-mkfs.ext4 /dev/sd*5
-mkfs.ext4 /dev/sd*7
-mount /dev/sd*7 /mnt
-mkdir /mnt/boot && mount /dev/sda5 /mnt/boot
-mkswap /dev/sd*6
-swapon /dev/sd*6
+mkfs.ext4 /dev/sdX5
+mkfs.ext4 /dev/sdX7
+mount /dev/sdX7 /mnt
+mkdir /mnt/boot && mount /dev/sdX5 /mnt/boot
+mkswap /dev/sdX6
+swapon /dev/sdX6
 ```
 
 #### 4.2 Installation with GPT in BIOS:
@@ -92,7 +92,7 @@ swapon /dev/sd*6
 Mount point   | Partition     | Name         | Partition type      | Suggested size
 ------------- | ------------- | ------------ | ------------------- | ------------- 
 NONE          | /dev/sdX1     | Boot         | BIOS boot partition | 2M   
-/             | /dev/sdX2     | Root         | Linux filesystem    | Content Cell  
+/mnt          | /dev/sdX2     | Root         | Linux filesystem    | Content Cell  
 
 
 Create Filesystem:
