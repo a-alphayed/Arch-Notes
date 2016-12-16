@@ -3,7 +3,7 @@ Arch-Notes
 
 Instructions for Arch installation notes + Arch on IMac/MacBook installation.
 
-The information in this documentation was taken from these sources:
+__References:__
 
 - [pandeiro/arch-on-air](https://github.com/keinohguchi/arch-on-air/blob/master/README.md)
 - [ArchLinux Installation With OS X on Macbook Air (Dual Boot)](http://panks.me/posts/2013/06/arch-linux-installation-with-os-x-on-macbook-air-dual-boot/)
@@ -15,6 +15,8 @@ The information in this documentation was taken from these sources:
 - [Partitioning](#3-create-partitions)
 - [Installation](#5-installation)
 - [Configuration](#7-configure-system)
+- [GRUB/EFI](#11-setup-grub/efi)
+- [GRUB/BIOS](#11.1-setup-grub/bios)
 - [Network](#12-network)
 - [Post Installation](#post-installation)
 
@@ -41,13 +43,11 @@ cgdisk /dev/sd*
 If the installation is on Apple device the partition table should look
 like this:
 
-```example
-##### /dev/sd*4 - [128MB] Apple HFS+ “Boot Loader”
-
-##### /dev/sd*5 - [256MB] Linux filesystem “Boot”
-
-##### /dev/sd*6 - [Rest of space] Linux filesystem “Root”
-```
+Mount point   | Partition     | Name         | Partition type      | Suggested size
+------------- | ------------- | ------------ | ------------------- | ------------- 
+NONE          | /dev/sdX4     | Boot Loader  | Apple HFS+          | 128M  
+/mnt/boot     | /dev/sdX5     | Boot         | Linux filesystem    | 256MB  
+/mnt          | /dev/sdX6     | Root         | Linux filesystem    | [Rest of space] 
 
 ### 4. Format and mount partitions
 
@@ -68,42 +68,46 @@ swapon /mnt/swapfile
 
 #### 4.1 Use this method for creating a swap partition instead of a swapfile:
 
-```example
-##### /dev/sd*4 - [128MB]         Apple HFS+ "Boot Loader"
-##### /dev/sd*5 - [256MB]         Linux filesystem "Boot"
-##### /dev/sd*6 - [X]             Linux Swap "Swap"
-##### /dev/sd*7 - [Rest of space] Linux filesystem "Root"
-```
+Mount point   | Partition     | Name         | Partition type      | Suggested size
+------------- | ------------- | ------------ | ------------------- | ------------- 
+NONE          | /dev/sdX4     | Boot Loader  | Apple HFS+          | 128M  
+/mnt/boot     | /dev/sdX5     | Boot         | Linux filesystem    | 256MB  
+NONE          | /dev/sdX6     | Swap         | Linux Swap          | [X] 
+/             | /dev/sdX7     | Root         | Linux filesystem    | [Rest of space] 
 
-Run:
-
-```bash
-mkfs.ext4 /dev/sd*5
-mkswap /dev/sd*6
-mkfs.ext4 /dev/sd*7
-mount /dev/sd*7 /mnt
-mkdir /mnt/boot && mount /dev/sda5 /mnt/boot
-swapon /dev/sd*6
-```
-
-#### 4.2 If your installing on a PC:
-
-
-First Header  | Second Header | First Header | Second Header | Second Header |
-------------- | ------------- | ------------ | ------------- | ------------- |
-Content Cell  | Content Cell  | Content Cell | Content Cell  | Content Cell  | 
-Content Cell  | Content Cell  | Content Cell | Content Cell  | Content Cell  |
-
-
-Run:
+Create Filesystem:
 
 ```bash
 mkfs.ext4 /dev/sd*5
-mkswap /dev/sd*6
 mkfs.ext4 /dev/sd*7
 mount /dev/sd*7 /mnt
 mkdir /mnt/boot && mount /dev/sda5 /mnt/boot
+mkswap /dev/sd*6
 swapon /dev/sd*6
+```
+
+#### 4.2 Installation with GPT in BIOS:
+
+
+Mount point   | Partition     | Name         | Partition type      | Suggested size
+------------- | ------------- | ------------ | ------------------- | ------------- 
+NONE          | /dev/sdX1     | Boot         | BIOS boot partition | 2M   
+/             | /dev/sdX2     | Root         | Linux filesystem    | Content Cell  
+
+
+Create Filesystem:
+
+```bash
+mkfs.ext4 /dev/sdX2
+mount /dev/sdX2 /mnt
+```
+Create a swapfile :
+
+```bash
+dd if=/dev/zero of=/mnt/swapfile bs=1G count=8
+chmod 600 /mnt/swapfile
+mkswap /mnt/swapfile
+swapon /mnt/swapfile
 ```
 
 ### 5. Installation
@@ -112,6 +116,13 @@ Internet connection required, for wireless option use:
 ```bash
 wifi-menu
 ```
+
+For DHCP:
+
+```bash
+systemctl enable dhcpcd.service
+```
+
 
 Test:
 
@@ -128,7 +139,7 @@ genfstab -p /mnt >> /mnt/etc/fstab
 ### 6. Optimize fstab for SSD, add swap (Apple only)
 
 ```bash
-nano /mnt/etc/fstab
+vi /mnt/etc/fstab
 ```
 
 ```example
@@ -177,7 +188,7 @@ export LANG=en_US.UTF-8
 Insert "keyboard" after "autodetect" if it's not already there.
 
 ```bash
-nano /etc/mkinitcpio.conf
+vi /etc/mkinitcpio.conf
 ```
 
 Then run it:
@@ -186,7 +197,7 @@ Then run it:
 mkinitcpio -p linux
 ```
 
-### 11. Set up GRUB/EFI (Apple only)
+### 11. Setup GRUB/EFI 
 
 To boot up the computer we will continue to use Apple’s EFI bootloader, so we need GRUB-EFI:
 
@@ -197,7 +208,7 @@ pacman -S grub-efi-x86_64
 #### Configuring GRUB
 
 ```bash
-nano /etc/default/grub
+vi /etc/default/grub
 ```
 
 A special kernal parameter must be set to avoid system (CPU/IO)
@@ -213,7 +224,7 @@ Additionally, the grub template is broken and requires this adjustment:
 GRUB_DISABLE_SUBMENU=y
 ```
 
-Run:
+Generate the configuration file of grub:
 
 ```bash
 grub-mkconfig -o boot/grub/grub.cfg
@@ -226,6 +237,34 @@ later in OS X:
 ```bash
 mkdir /mnt/usbdisk && mount /dev/sdb /mnt/usbdisk 
 cp boot.efi /mnt/usbdisk/
+```
+
+### 11.1 Setup GRUB/BIOS
+
+Install GRUB"
+
+```bash
+ pacman -S grub
+```
+
+#### Configuring GRUB
+
+```bash
+vi /etc/default/grub
+```
+
+The grub template is broken and requires this adjustment:
+
+```example
+#Fix broken grub.cfg gen
+GRUB_DISABLE_SUBMENU=y
+```
+
+Generate the configuration file of grub:
+
+```bash
+grub-install --target=i386-pc --recheck /dev/sdX
+grub-mkconfig -o boot/grub/grub.cfg
 ```
 
 ### 12. Network
