@@ -383,6 +383,7 @@ Post Installation
  2. [Starting Session](#2-starting session)
   2. [.xinitrc](#i-xinitrc)
  3. [Graphical terminal](#3-graphical-terminal)
+ 4. Packages(#4-packages)
 
           
 #### 1. Installation:
@@ -392,7 +393,7 @@ sudo pacman -S gnome
 ```
 
 #### 2. Starting Session
-I will be using [xinit](https://wiki.archlinux.org/index.php/Xinit) to start the desktop enviroment, a display manager line [GDM](https://wiki.archlinux.org/index.php/GDM#Autostarting_applications_with_GDM) can be used and enable with [systemd](https://wiki.archlinux.org/index.php/Systemd#Using_units).
+I will be using [xinit](https://wiki.archlinux.org/index.php/Xinit) to start the desktop enviroment, a display manager like [GDM](https://wiki.archlinux.org/index.php/GDM#Autostarting_applications_with_GDM) can be used and enable with [systemd](https://wiki.archlinux.org/index.php/Systemd#Using_units).
 
 ```bash
 sudo pacman -S xorg-xinit
@@ -472,10 +473,10 @@ Install Guake:
 sudo pacman -S guake
 ```
 
-##### 3.1 Install Zsh completions:
+##### 3.1 Install Zsh:
 
 ```bash 
-sudo pacman -S zsh-completions
+sudo pacman -S zsh
 ```
 
 ##### 3.2 Install [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
@@ -490,6 +491,38 @@ cd ~/.dotfiles
 chmod +x .makesymlinks.sh
 ./.makesymlinks.sh
 ```
+
+#### 3.  Packages
+
+Use [techdavid/backup](https://github.com/techdavid/bacpac) script to restore Arch Linux's pacman configuration data and manually installed packages.
+
+##### Usage
+
+To backup your current packages and configuration, simply run the following at
+any time:
+
+```bash
+./bacpac backup
+```
+
+To restore your packages and configuration on another computer or after
+reinstalling the operating system, run the following:
+
+```bash
+git clone https://gist.github.com/alphayed/af79469e7f143bf5c517344e57503132 bacpac
+cd bacpac
+./bacpac restore
+```
+
+To update bacpac, which you should do every few days to stay up-to-date, run the
+following:
+
+```bash
+./bacpac update
+```
+
+
+
 
 
 
