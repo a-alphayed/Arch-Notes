@@ -487,7 +487,7 @@ Install [halfo/lambda-mod-zsh-theme](https://github.com/halfo/lambda-mod-zsh-the
 ```bash
 git clone git@github.com:alphayed/.dotfiles.git
 cd ~/.dotfiles
-chmod +x ,makesymlinks.sh
+chmod +x .makesymlinks.sh
 ./.makesymlinks.sh
 ```
 
