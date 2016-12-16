@@ -385,8 +385,9 @@ Post Installation
 3. [Graphical terminal](#3-graphical-terminal)
  
 #### Applications
-1. [Packages](#4-packages)
+1. [Packages](#1-packages)
 
+----
           
 #### 1. Installation:
 
