@@ -16,7 +16,7 @@ __References:__
 - [Installation](#5-installation)
 - [Configuration](#7-configure-system)
 - [GRUB/EFI](#11-bootloader)
-- [GRUB/BIOS](#11.1-bios)
+- [GRUB/BIOS](#11-bios)
 - [Network](#12-network)
 - [Post Installation](#post-installation)
 
