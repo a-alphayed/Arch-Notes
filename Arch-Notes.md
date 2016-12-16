@@ -15,8 +15,8 @@ __References:__
 - [Partitioning](#3-create-partitions)
 - [Installation](#5-installation)
 - [Configuration](#7-configure-system)
-- [GRUB/EFI](#11-setup-grub)
-- [GRUB/BIOS](#11.1-setup-grub/bios)
+- [GRUB/EFI](#11-bootloader)
+- [GRUB/BIOS](#11.1-bios)
 - [Network](#12-network)
 - [Post Installation](#post-installation)
 
@@ -216,7 +216,7 @@ Then run it:
 mkinitcpio -p linux
 ```
 
-### 11. Setup GRUB/EFI  
+### 11. Bootloader 
 
 To boot up the computer we will continue to use Apple’s EFI bootloader, so we need GRUB-EFI:
 
@@ -258,9 +258,11 @@ mkdir /mnt/usbdisk && mount /dev/sdb /mnt/usbdisk
 cp boot.efi /mnt/usbdisk/
 ```
 
-### 11.1 Setup GRUB/BIOS
+### 11.1 BIOS
 
-Install GRUB"
+For GRUB/EFI bootloader configuration 
+
+Install GRUB:
 
 ```bash
  pacman -S grub
