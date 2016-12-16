@@ -15,10 +15,11 @@ __References:__
 - [Partitioning](#3-create-partitions)
 - [Installation](#5-installation)
 - [Configuration](#7-configure-system)
-- [GRUB/EFI](#11-setup-grub/efi)
+- [GRUB/EFI](#11-setup-grub)
 - [GRUB/BIOS](#11.1-setup-grub/bios)
 - [Network](#12-network)
 - [Post Installation](#post-installation)
+
 
 Procedure
 ---------
