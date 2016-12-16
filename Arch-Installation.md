@@ -295,11 +295,11 @@ pacman -S iw wireless_tools wpa_supplicant dialog
 ```
 
 ### 13. Setup boot in OS X
-Before reboot, exit from the *chroot* and unmount all the partition:
+Before rebooting, exit from the *chroot* and unmount partition/s:
 
 ```bash
 exit
-umount /mnt/{boot,root}
+umount -R /mnt
 reboot
 ```
 
