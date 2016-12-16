@@ -380,7 +380,7 @@ Post Installation
 
 #### GUI
 1. [Installation](#1-installation)
-2. [Starting Session](#2-starting session)
+2. [Starting Session](#2-starting-session)
  2. [.xinitrc](#i-xinitrc)
 3. [Graphical terminal](#3-graphical-terminal)
  
