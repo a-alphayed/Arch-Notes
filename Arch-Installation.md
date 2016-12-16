@@ -376,14 +376,16 @@ Reboot the computer and hold the alt/option key to select operating system.
 
 Post Installation
 -----------------
-[GUI](#gui)
+
 
 #### GUI
- 1. [Installation](#1-installation)
- 2. [Starting Session](#2-starting session)
-  2. [.xinitrc](#i-xinitrc)
- 3. [Graphical terminal](#3-graphical-terminal)
- 4. Packages(#4-packages)
+1. [Installation](#1-installation)
+2. [Starting Session](#2-starting session)
+ 2. [.xinitrc](#i-xinitrc)
+3. [Graphical terminal](#3-graphical-terminal)
+ 
+#### Applications
+1. [Packages](#4-packages)
 
           
 #### 1. Installation:
