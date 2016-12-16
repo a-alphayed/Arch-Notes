@@ -494,7 +494,11 @@ chmod +x .makesymlinks.sh
 ./.makesymlinks.sh
 ```
 
-#### 3.  Packages
+----
+
+### Applications
+
+#### 1. Packages
 
 Use [techdavid/backup](https://github.com/techdavid/bacpac) script to restore Arch Linux's pacman configuration data and manually installed packages.
 
